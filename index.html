@@ -52,7 +52,7 @@
         <h1 class="hero-title">GG</h1>
         <p class="hero-name">ARCHI</p>
         <div class="hero-name-divider"></div>
-        <p class="hero-subtitle">Architecture | Design | Buılt</p>
+        <p class="hero-subtitle">Archıtecture | Desıgn | Buılt</p>
         <!-- <h1>CANIM YAKIŞIKLI ARKADAŞIM TEVFİK YAPTI İNSTASI tevfik.ere KIZLAR EKLESİNNNNN</h1> -->
       </div>
       <div class="hero-scroll">Keşfet</div>
@@ -489,21 +489,23 @@ Konsept geliştirme, mimari proje tasarımı, uygulama projeleri, cephe tasarım
             </div>
           </div>
 
-          <form class="contact-form reveal" id="contactForm">
-            <div class="form-group">
-              <input type="text" placeholder="Adınız" required />
-            </div>
-            <div class="form-group">
-              <input type="email" placeholder="E-posta Adresiniz" required />
-            </div>
-            <div class="form-group">
-              <input type="text" placeholder="Konu" />
-            </div>
-            <div class="form-group">
-              <textarea placeholder="Mesajınız" required></textarea>
-            </div>
-            <button type="submit" class="form-submit">Gönder</button>
-          </form>
+          <form class="contact-form reveal" id="contactForm"
+      action="https://formspree.io/f/xvzeezjn" method="POST">
+  <div class="form-group">
+    <input type="text" name="ad" placeholder="Adınız" required />
+  </div>
+  <div class="form-group">
+    <input type="email" name="email" placeholder="E-posta Adresiniz" required />
+  </div>
+  <div class="form-group">
+    <input type="text" name="konu" placeholder="Konu" />
+  </div>
+  <div class="form-group">
+    <textarea name="mesaj" placeholder="Mesajınız" required></textarea>
+  </div>
+  <button type="submit" class="form-submit">Gönder</button>
+    <div class="form-status" id="formStatus"></div>
+</form>
         </div>
       </div>
     </section>
@@ -735,12 +737,43 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "ArrowLeft") { showImage(currentIndex - 1); startAuto(); }
 });
 
-      // ── Contact form (placeholder) ──
-      document.getElementById("contactForm").addEventListener("submit", (e) => {
-        e.preventDefault();
-        // TODO: Form gönderme işlemi
-        alert("Mesajınız gönderildi! (Bu bir demo mesajdır)");
-      });
+// ── Contact form (AJAX ile Formspree) ──
+const contactForm = document.getElementById("contactForm");
+const formStatus = document.getElementById("formStatus");
+
+contactForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const submitBtn = contactForm.querySelector(".form-submit");
+  const originalText = submitBtn.textContent;
+  submitBtn.textContent = "Gönderiliyor...";
+  submitBtn.disabled = true;
+
+  try {
+    const response = await fetch(contactForm.action, {
+      method: "POST",
+      body: new FormData(contactForm),
+      headers: { Accept: "application/json" },
+    });
+
+    if (response.ok) {
+      formStatus.textContent = "Mesajınız iletildi. En kısa sürede dönüş yapılacaktır.";
+      formStatus.className = "form-status show success";
+      contactForm.reset();
+    } else {
+      formStatus.textContent = "Bir hata oluştu. Lütfen tekrar deneyin.";
+      formStatus.className = "form-status show error";
+    }
+  } catch (error) {
+    formStatus.textContent = "Bağlantı hatası. Lütfen tekrar deneyin.";
+    formStatus.className = "form-status show error";
+  } finally {
+    submitBtn.textContent = originalText;
+    submitBtn.disabled = false;
+  }
+});
+
+      
     </script>
   </body>
 </html>
