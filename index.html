@@ -667,11 +667,15 @@ let autoTimer = null;
 
 function showImage(index) {
   if (galleryImages.length === 0) return;
-  // döngüsel: son fotoğraftan sonra başa dön
   currentIndex = (index + galleryImages.length) % galleryImages.length;
   lightboxImg.src = galleryImages[currentIndex];
   lightboxCounter.textContent =
     (currentIndex + 1) + " / " + galleryImages.length;
+
+  // Repaint'i zorla (backdrop-filter bug'ı için)
+  lightboxImg.style.display = "none";
+  lightboxImg.offsetHeight; // reflow tetikler
+  lightboxImg.style.display = "";
 }
 
 function startAuto() {

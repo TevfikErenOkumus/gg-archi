@@ -698,7 +698,7 @@ a {
   inset: 0;
   z-index: 2000;
   background: rgba(10, 10, 10, 0.95);
-  backdrop-filter: blur(6px);
+  /* backdrop-filter: blur(6px); */
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -788,12 +788,6 @@ a {
   max-height: 80vh;
   object-fit: contain;
   border: 1px solid var(--divider);
-  transform: scale(0.9);
-  transition: transform 0.3s ease;
-}
-
-.lightbox.open .lightbox-img {
-  transform: scale(1);
 }
 
 .lightbox-caption {
@@ -1069,36 +1063,34 @@ a {
     padding: 0 1rem;
   }
 
-  @media (max-width: 768px) {
-    /* Oklar görselin üzerine, iki yana */
-    .lightbox.open {
-      flex-direction: column; /* dikey düzen: görsel üstte, info altta */
-      position: relative;
-    }
+  /* Oklar görselin üzerine, iki yana */
+  .lightbox.open {
+    flex-direction: column; /* dikey düzen: görsel üstte, info altta */
+    position: relative;
+  }
 
-    .lightbox-stage {
-      position: relative;
-      width: 100%;
-    }
+  .lightbox-stage {
+    position: relative;
+    width: 100%;
+  }
 
-    .lightbox-nav {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 10;
-      width: 40px;
-      height: 40px;
-      font-size: 1.3rem;
-      background: rgba(10, 10, 10, 0.5); /* görsel üstünde okunur olsun */
-    }
+  .lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 40px;
+    height: 40px;
+    font-size: 1.3rem;
+    background: rgba(10, 10, 10, 0.5); /* görsel üstünde okunur olsun */
+  }
 
-    .lightbox-prev {
-      left: 0.5rem;
-    }
+  .lightbox-prev {
+    left: 0.5rem;
+  }
 
-    .lightbox-next {
-      right: 0.5rem;
-    }
+  .lightbox-next {
+    right: 0.5rem;
   }
 
   .navbar-links {
