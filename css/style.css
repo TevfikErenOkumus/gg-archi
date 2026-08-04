@@ -455,6 +455,18 @@ a {
   background: var(--bg-primary);
 }
 
+.mission-divider {
+  width: 50px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--silver-dark),
+    transparent
+  );
+  margin: 2rem auto 0;
+}
+
 .mission-label {
   font-family: var(--font-display);
   font-size: 0.75rem;
@@ -487,9 +499,10 @@ a {
 
 .mission-panel p {
   color: var(--text-secondary);
-  font-size: 0.95rem;
-  line-height: 1.9;
-  max-width: 480px;
+  font-size: 0.9rem;
+  line-height: 1.8;
+  max-width: 420px;
+  margin: 0 auto;
 }
 
 /* ═══════════════════════════════════════
@@ -721,6 +734,12 @@ a {
   gap: 1rem;
 }
 
+.lightbox-image-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
 .lightbox-nav {
   background: none;
   border: 1px solid var(--silver-dark);
@@ -740,8 +759,20 @@ a {
     background 0.3s ease,
     color 0.3s ease;
   flex: 0 0 auto;
-  padding-bottom: 4px; /* oku optik olarak ortalar */
+  padding-bottom: 7px; /* oku optik olarak ortalar */
   box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+.lightbox-prev {
+  left: -70px;
+}
+
+.lightbox-next {
+  right: -70px;
 }
 
 .lightbox-nav:hover {
@@ -778,13 +809,15 @@ a {
 
 /* Lightbox'ı yatay düzen için güncelle */
 .lightbox.open {
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  gap: 1rem;
 }
 
 .lightbox-img {
-  max-width: 90%;
+  width: auto;
+  max-width: min(1200px, 80vw);
   max-height: 80vh;
   object-fit: contain;
   border: 1px solid var(--divider);
@@ -1065,32 +1098,108 @@ a {
 
   /* Oklar görselin üzerine, iki yana */
   .lightbox.open {
-    flex-direction: column; /* dikey düzen: görsel üstte, info altta */
-    position: relative;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    padding: 1rem !important;
+    z-index: 99999 !important; /* Ekranın en üstüne çıkarır */
   }
 
   .lightbox-stage {
-    position: relative;
-    width: 100%;
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
   }
 
+  .lightbox-image-wrap {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  .lightbox-img {
+    max-width: 85vw !important; /* Görselin ekrandan taşmasını engeller */
+    max-height: 50vh !important; /* Görselin yüksekliğini sınırlar */
+    object-fit: contain !important;
+  }
+
+  .lightbox-close {
+    position: absolute !important;
+    top: 1.5rem !important;
+    right: 1.5rem !important;
+    z-index: 100005 !important;
+
+    width: 30px !important;
+    height: 30px !important;
+    border-radius: 50% !important;
+
+    /* Oklarla uyumlu buzlu cam arka plan */
+    background: rgba(10, 10, 10, 0.5) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    border: 1px solid rgba(212, 212, 212, 0.2) !important;
+
+    color: var(--silver-light) !important;
+    font-size: 1.6rem !important;
+    font-weight: 200 !important;
+
+    /* Esnek hizalama */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    /* Fonttan kaynaklı aşağı kaymayı düzeltmek için optik kaydırma */
+    padding-bottom: 2px !important;
+    line-height: 0 !important;
+
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .lightbox-close:hover {
+    background: rgba(212, 212, 212, 0.2) !important;
+    color: #fff !important;
+  }
   .lightbox-nav {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 10;
-    width: 40px;
-    height: 40px;
-    font-size: 1.3rem;
-    background: rgba(10, 10, 10, 0.5); /* görsel üstünde okunur olsun */
+    position: absolute !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    z-index: 100000 !important;
+
+    width: 25px !important;
+    height: 35px !important;
+    border-radius: 0% !important;
+
+    /* Yarı saydam arka plan + buzlu cam bulanıklığı */
+    background: rgba(10, 10, 10, 0.45) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+
+    /* İnce, zarif gümüş sınır hattı */
+    border: 1px solid rgba(212, 212, 212, 0.25) !important;
+    color: var(--silver-light) !important;
+
+    font-size: 1.6rem !important;
+    font-weight: 200 !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding-bottom: 4px !important; /* Ok karakterini optik olarak dikeyde ortalar */
+
+    /* Yumuşak gölge */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4) !important;
   }
 
   .lightbox-prev {
-    left: 0.5rem;
+    left: 0.6rem !important;
   }
 
   .lightbox-next {
-    right: 0.5rem;
+    right: 0.6rem !important;
   }
 
   .navbar-links {

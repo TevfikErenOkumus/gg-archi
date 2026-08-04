@@ -164,6 +164,8 @@
  
 Konsept geliştirme, mimari proje tasarımı, uygulama projeleri, cephe tasarımı, iç mekân kurgusu, üç boyutlu görselleştirme ve sunum stratejileri birbirinden bağımsız süreçler olarak değil, projenin bütününü oluşturan tek bir tasarım yaklaşımının ayrılmaz parçaları olarak ele alınmaktadır. Her ölçekte alınan karar; yapının kimliğini güçlendiren, mekânsal kaliteyi artıran ve tasarım bütünlüğünü destekleyen temel bir unsur olarak değerlendirilmektedir.
     </p>
+    <div class="mission-divider"></div>
+
   </div>
   <div class="mission-panel mission-right reveal">
     <!-- <span class="mission-label">02 — Vizyon</span> -->
@@ -171,6 +173,8 @@ Konsept geliştirme, mimari proje tasarımı, uygulama projeleri, cephe tasarım
     <p>
       Mimarlığın estetik, teknoloji ve sürdürülebilirlik ekseninde gelişimine katkı sağlayan; yenilikçi yaklaşımı, nitelikli tasarım anlayışı ve güvenilir proje yönetimiyle ulusal ve uluslararası ölçekte referans gösterilen bir mimarlık ofisi olmak en temel vizyonumuzdur. Dijital modelleme, ileri görselleştirme ve güncel proje geliştirme teknolojilerini yalnızca bir sunum aracı olarak değil, tasarım sürecini yönlendiren stratejik araçlar olarak kullanıyor; mekânsal kaliteyi, kullanıcı deneyimini ve teknik uygulanabilirliği her projede bütüncül bir yaklaşımla ele alıyoruz. Amacımız, estetik değerini yıllar boyunca koruyan, bulunduğu çevreye katkı sağlayan ve geleceğin yaşam biçimlerine uyum sağlayan nitelikli mimari projeler üretmektir.  Alınan her tasarım kararı ve çözümlenen her detay da , yalnızca bugünün ihtiyaçlarına cevap vermekle kalmayıp gelecekte de değerini koruyacak nitelikli mimari mekânlar üretme vizyonunu yansıtmaktadır.
     </p>
+    <div class="mission-divider"></div>
+
   </div>
 </section>
 
@@ -534,14 +538,16 @@ Konsept geliştirme, mimari proje tasarımı, uygulama projeleri, cephe tasarım
 <div class="lightbox" id="lightbox">
   <span class="lightbox-close" id="lightboxClose">&times;</span>
 
-  <button class="lightbox-nav lightbox-prev" id="lightboxPrev">&#8249;</button>
 
   <div class="lightbox-stage">
+  <div class="lightbox-image-wrap">
+    <button class="lightbox-nav lightbox-prev" id="lightboxPrev">&#8249;</button>
     <img class="lightbox-img" id="lightboxImg" src="" alt="" />
-    <div class="lightbox-counter" id="lightboxCounter"></div>
+    <button class="lightbox-nav lightbox-next" id="lightboxNext">&#8250;</button>
   </div>
+  <div class="lightbox-counter" id="lightboxCounter"></div>
+</div>
 
-  <button class="lightbox-nav lightbox-next" id="lightboxNext">&#8250;</button>
 
   <div class="lightbox-info" id="lightboxInfo">
     <h3 id="lightboxTitle"></h3>
@@ -672,10 +678,6 @@ function showImage(index) {
   lightboxCounter.textContent =
     (currentIndex + 1) + " / " + galleryImages.length;
 
-  // Repaint'i zorla (backdrop-filter bug'ı için)
-  lightboxImg.style.display = "none";
-  lightboxImg.offsetHeight; // reflow tetikler
-  lightboxImg.style.display = "";
 }
 
 function startAuto() {
@@ -691,7 +693,7 @@ function stopAuto() {
 }
 
 projectCards.forEach((card) => {
-  card.addEventListener("click", () => {
+  card.addEventListener("click", (e) => {
     const data = card.dataset.images;
     if (!data) return; // görsel listesi yoksa açma
 
@@ -728,9 +730,15 @@ lightboxNext.addEventListener("click", (e) => {
   startAuto();
 });
 
-// Arka plana tıklayınca kapat
+// Arka plana, yazılara veya görsel dışındaki herhangi bir yere tıklayınca kapat
 lightbox.addEventListener("click", (e) => {
-  if (e.target === lightbox) closeLightbox();
+  const isImage = e.target.closest("#lightboxImg");
+  const isNavBtn = e.target.closest(".lightbox-nav");
+
+  // Tıklanan yer görsel veya yön butonları değilse kapat
+  if (!isImage && !isNavBtn) {
+    closeLightbox();
+  }
 });
 
 // Klavye: ESC kapat, oklarla gez
