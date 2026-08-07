@@ -64,7 +64,7 @@
         <div class="about-grid">
           <div class="about-image reveal">
             <!-- TODO: Portre fotoğrafı ekle -->
-            <img src="img/pp2.jpeg" alt="Gamze Güleşçioğlu" />
+            <img src="img/pp.jpeg" alt="Gamze Güleşçioğlu" />
             <div class="about-image-placeholder">Portre Fotoğrafı</div>
           </div>
           <div class="about-text reveal">
@@ -507,6 +507,12 @@ Konsept geliştirme, mimari proje tasarımı, uygulama projeleri, cephe tasarım
   <div class="form-group">
     <textarea name="mesaj" placeholder="Mesajınız" required></textarea>
   </div>
+  <div class="form-consent">
+  <input type="checkbox" id="kvkkConsent" name="kvkk" required />
+  <label for="kvkkConsent">
+    <a href="#" id="kvkkLink">Aydınlatma Metni</a>'ni okudum ve kişisel verilerimin işlenmesini onaylıyorum.
+  </label>
+</div>
   <button type="submit" class="form-submit">Gönder</button>
     <div class="form-status" id="formStatus"></div>
 </form>
@@ -552,6 +558,80 @@ Konsept geliştirme, mimari proje tasarımı, uygulama projeleri, cephe tasarım
   <div class="lightbox-info" id="lightboxInfo">
     <h3 id="lightboxTitle"></h3>
     <p id="lightboxDesc"></p>
+  </div>
+</div>
+<div class="kvkk-modal" id="kvkkModal">
+  <div class="kvkk-content">
+    <span class="kvkk-close" id="kvkkClose">&times;</span>
+    <h2>Kişisel Verilerin Korunması Aydınlatma Metni</h2>
+    <div class="kvkk-text">
+  <p><strong>GG ARCHITECTURE</strong><br />
+  MİSAFİR ÖNERİ/ŞİKAYET/TALEP SÜREÇLERİNDE KİŞİSEL VERİLERİNİN İŞLENMESİYLE İLGİLİ AYDINLATMA METNİ</p>
+
+  <h3>1. VERİLERİNİZİ İŞLEYEN KİŞİ (VERİ SORUMLUSU)</h3>
+  <p>GG Architecture (“Veri Sorumlusu”) olarak kişisel verilerinizin güvenliğinin sağlanmasına son derece önem vermekteyiz. Bu kapsamda 6698 sayılı Kişisel Verilerin Korunması Kanunu (“KVK Kanunu”) uyarınca kişisel verilerinizin işlenmesi ve üçüncü kişilere aktarımı süreçlerinde, kişisel verilerinizin hukuka aykırı olarak işlenmesini ve erişilmesini önlemek ve muhafazasını sağlamak için uygun güvenlik düzeyini sağlamak adına gerekli tedbirleri almaktayız. Bu sorumluluğumuzun bilinci ile KVK Kanunu ve ilgili mevzuat kapsamında Veri Sorumlusu sıfatıyla, kişisel verilerinizi aşağıda belirtilen çerçevede işlemekteyiz.</p>
+
+  <h3>2. İŞLENEN KİŞİSEL VERİLERİNİZ</h3>
+  <p>Veri İşleyen tarafından siz misafirlerimize ilişkin olarak veri işlemeye konu olan kişisel verileriniz aşağıda sıralanmıştır.</p>
+  <ul>
+    <li><strong>Kimlik Verisi:</strong> Adı Soyadı.</li>
+    <li><strong>İletişim Verisi:</strong> Telefon Numarası, E-posta Adresi.</li>
+    <li><strong>Müşteri İşlem Verisi:</strong> Öneri/Şikayet/Talep Bilgisi, Hizmet Talep Bilgisi.</li>
+  </ul>
+
+  <h3>3. KİŞİSEL VERİLERİNİZİN TOPLANMA YÖNTEMİ</h3>
+  <p>Veri Sorumlusu olarak hukuki yükümlülüklerimizi yerine getirmek, kanunlarda öngörülen nedenler ve meşru menfaatimiz gereği kişisel verileriniz;</p>
+  <ul>
+    <li>Fiziki form ve belgeler ile,</li>
+    <li>Dijital form ile,</li>
+  </ul>
+  <p>toplanmakta ve işlenmektedir.</p>
+
+  <h3>4. KİŞİSEL VERİLERİNİZİN İŞLENME AMACI VE HUKUKİ SEBEBİ</h3>
+  <p>Veri Sorumlusu tarafından yukarıda belirtilen kişisel verileriniz;</p>
+  <ul>
+    <li>İç Denetim / Soruşturma / İstihbarat Faaliyetlerinin Yürütülmesi,</li>
+    <li>İletişim Faaliyetlerinin Yürütülmesi,</li>
+    <li>İş Faaliyetlerinin Yürütülmesi / Denetimi,</li>
+    <li>İş Süreçlerinin İyileştirilmesine Yönelik Önerilerin Alınması ve Değerlendirilmesi,</li>
+    <li>Talep / Şikâyetlerin Takibi,</li>
+    <li>Veri Sorumlusu Operasyonlarının Güvenliğinin Temini,</li>
+    <li>Yetkili Kişi, Kurum ve Kuruluşlara Bilgi Verilmesi,</li>
+    <li>Yönetim Faaliyetlerinin Yürütülmesi,</li>
+  </ul>
+  <p>amaçlarıyla sınırlı olarak ve KVK Kanunu’nun 5. Maddesinde belirtilen “İlgili kişinin temel hak ve özgürlüklerine zarar vermemek kaydıyla, veri sorumlusunun meşru menfaatleri için veri işlenmesinin zorunlu olması.” hukuki sebepleri ile işlenmektedir.</p>
+
+  <h3>5. KİŞİSEL VERİLERİNİZİN PAYLAŞILMASI</h3>
+  <p>Tarafımıza iletilen kişisel verileriniz yukarıda belirtilen işleme amaçlarıyla sınırlı olarak ve gerektiğinde yetkili kamu kurum ve kuruluşları, topluluk şirketi ve tedarikçi/gerçek kişiler veya özel hukuk tüzel kişileri ile paylaşılmaktadır.</p>
+  <p>Ayrıca kişisel verileriniz, mail ve dosya sunucumuzun yurtdışında mukim bulunan hizmet sağlayıcımız bünyesinde olması nedeniyle KVK Kanunu’nun 5. maddesinde belirtilen bir hakkın tesisi, kullanılması veya korunması için veri işlemenin zorunlu olması, ilgili kişinin temel hak ve özgürlüklerine zarar vermemek kaydıyla, veri sorumlusunun meşru menfaatleri için veri işlenmesinin zorunlu olması hukuki sebeplerine ve imzalanan Standart Sözleşme’ye dayalı olarak yurtdışına aktarılabilecektir.</p>
+
+  <h3>6. KİŞİSEL VERİLERİNİZİN İMHA EDİLMESİ</h3>
+  <p>Veri Sorumlumuz işlediği kişisel verileri mevzuatla belirlenen sürelerde saklamakta olup mevzuatta ayrıca süre belirlenmemiş olması halinde; kişisel veriler Veri Sorumlumuzun o veriyi işlerken sunduğu hizmetlerle bağlı olarak Veri Sorumlumuzun uygulamaları ve ticari yaşamının teamülleri uyarınca işlenmesini gerektiren süre kadar ve bu süreden sonra sadece olası hukuki uyuşmazlıklarda delil teşkil etmesi amacıyla uygulamada gerekliliği ortaya konulan süreler boyunca saklanmaktadır. Belirtilen sürelerin sona ermesinden sonra KVK Kanunu’nun 7. maddesi uyarınca söz konusu kişisel veriler ilk imha tarihinde silinmekte, yok edilmekte veya anonim hale getirilmektedir.</p>
+
+  <h3>7. KİŞİSEL VERİLERİN İŞLENMESİYLE İLGİLİ HAKLARINIZ</h3>
+  <p>KVK Kanunu’nun 11. maddesi çerçevesinde Şirketimize başvurarak aşağıda yer alan taleplerinizi bize iletebilirsiniz:</p>
+  <ul>
+    <li>a) Kişisel verilerinizin işlenip işlenmediğini öğrenme, işlenmişse buna ilişkin bilgi talep etme,</li>
+    <li>b) Kişisel verilerinizin işlenme amacını ve bunların amacına uygun kullanılıp kullanılmadığını öğrenme,</li>
+    <li>c) Yurt içinde veya yurt dışında kişisel verilerinizin aktarıldığı üçüncü kişileri öğrenme,</li>
+    <li>d) Kişisel verilerin eksik veya yanlış işlenmiş olması hâlinde bunların düzeltilmesini isteme,</li>
+    <li>e) KVK Kanunu’nun 7. maddesi kapsamında kişisel verilerinizin işlenmesini gerektiren sebeplerin ortadan kalkması hâlinde kişisel verilerinizin silinmesini, yok edilmesini ya da anonim hâle getirilmesini talep etme,</li>
+    <li>f) (d) ve (e) bentleri uyarınca yapılan işlemlerin, kişisel verilerinizin aktarıldığı üçüncü kişilere bildirilmesini isteme,</li>
+    <li>g) İşlenen verilerin münhasıran otomatik sistemler vasıtasıyla analiz edilmesi suretiyle aleyhinize bir sonucun doğmasına itiraz etme,</li>
+    <li>h) Kişisel verilerinizin kanuna aykırı olarak işlenmesi sebebiyle zarara uğraması hâlinde zararın giderilmesini talep etme.</li>
+  </ul>
+  <p>Yukarıda yer alan haklarınızı KVK Kanunu ve 10.03.2018 tarihinde yayımlanan Veri Sorumlusuna Başvuru Usul ve Esasları Hakkında Tebliğ hükümlerine ve ilgili güncel mevzuata uygun olarak düzenlenen İlgili Kişi Başvuru Formunu <a href="https://gamzegulescioglu.com/#iletisim">https://gamzegulescioglu.com/#iletisim</a> adresinde yer alan;</p>
+  <ul>
+    <li>1071 Ankara, Kızılırmak Mah. 1443. Cad. No: 25 Çukurambar, Çankaya/Ankara adresine bizzat/elden teslim edebilir, noter kanalıyla veya iadeli taahhütlü posta yoluyla gönderebilir,</li>
+    <li>+90 501 601 18 18 telefon numarasına gönderebilir,</li>
+    <li>gamzegulescioglu@gmail.com adresine güvenli elektronik ya da mobil imzalı olarak, kayıtlı elektronik posta adresi aracılığıyla iletilebilirsiniz.</li>
+  </ul>
+  <p>İlgili kişinin kendisi dışında bir kişinin talepte bulunması için konuya ilişkin olarak ilgili kişi tarafından başvuruda bulunacak kişi adına düzenlenmiş noter tasdikli özel vekâletname bulunmalıdır.</p>
+  <p>Bu kapsamda usulüne uygun bir şekilde Veri Sorumlumuza ileteceğiniz talepleriniz, en geç otuz gün içerisinde neticelendirilecektir. Söz konusu taleplerinizin neticelendirilmesi ayrıca bir maliyeti gerektirmesi halinde, Veri Sorumlumuz tarafından başvuru sahibinden Kişisel Verileri Koruma Kurulu (“Kurul”) tarafından belirlenen tarifedeki ücret alınacaktır. Veri Sorumlumuzca CD, flash bellek gibi bir kayıt ortamı üzerinden başvurunuza cevap verilmesi halinde ise kayıt ortamının maliyetini geçmeyecek şekilde belirlenen ücret talep edilebilecektir.</p>
+  <p>Veri Sorumlumuz, başvuruda bulunan kişinin kişisel veri sahibi olup olmadığını tespit etmek adına ilgili kişiden bilgi talep edebilir, başvuruda belirtilen hususları netleştirmek adına, ilgili kişiye başvurusu ile ilgili soru yöneltebilir.</p>
+  <p>Kişisel veri sahibi KVK Kanunu’nun 14. maddesi gereğince başvurunun reddedilmesi, verilen cevabın yetersiz bulunması veya süresinde başvuruya cevap verilmemesi hâllerinde; Veri Sorumlumuzun cevabını öğrendiği tarihten itibaren otuz ve herhâlde başvuru tarihinden itibaren altmış gün içinde Kurul’a şikâyette bulunabilir.</p>
+</div>
+    <button class="kvkk-accept" id="kvkkAccept">Okudum, Onaylıyorum</button>
   </div>
 </div>
 
@@ -784,6 +864,39 @@ contactForm.addEventListener("submit", async (e) => {
     submitBtn.disabled = false;
   }
 });
+
+
+// ── KVKK Modal ──
+const kvkkModal = document.getElementById("kvkkModal");
+const kvkkLink = document.getElementById("kvkkLink");
+const kvkkClose = document.getElementById("kvkkClose");
+const kvkkAccept = document.getElementById("kvkkAccept");
+const kvkkConsent = document.getElementById("kvkkConsent");
+
+kvkkLink.addEventListener("click", (e) => {
+  e.preventDefault();
+  kvkkModal.classList.add("open");
+  document.body.style.overflow = "hidden";
+});
+
+function closeKvkk() {
+  kvkkModal.classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+kvkkClose.addEventListener("click", closeKvkk);
+
+// "Okudum, Onaylıyorum" → kutuyu işaretle ve kapat
+kvkkAccept.addEventListener("click", () => {
+  kvkkConsent.checked = true;
+  closeKvkk();
+});
+
+// Arka plana tıklayınca kapat
+kvkkModal.addEventListener("click", (e) => {
+  if (e.target === kvkkModal) closeKvkk();
+});
+
 
       
     </script>

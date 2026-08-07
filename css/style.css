@@ -1071,6 +1071,116 @@ a {
   transform: translateY(0);
 }
 
+/* Consent checkbox */
+.form-consent {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.5rem;
+  width: 100%;
+}
+
+.form-consent input {
+  accent-color: var(--silver-mid);
+  cursor: pointer;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  margin: 0;
+}
+
+.form-consent label {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  flex: 1;
+}
+.form-consent a {
+  color: var(--silver-light);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* KVKK modal */
+.kvkk-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  background: rgba(10, 10, 10, 0.9);
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+.kvkk-modal.open {
+  display: flex;
+}
+.kvkk-content {
+  background: var(--bg-surface);
+  border: 1px solid var(--divider);
+  border-radius: 8px;
+  max-width: 700px;
+  width: 100%;
+  max-height: 80vh;
+  padding: 2.5rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.kvkk-content h2 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 300;
+  color: var(--silver-light);
+  margin-bottom: 1.5rem;
+}
+.kvkk-text {
+  overflow-y: auto;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  padding-right: 1rem;
+}
+.kvkk-text::-webkit-scrollbar {
+  width: 4px;
+}
+.kvkk-text::-webkit-scrollbar-thumb {
+  background: var(--silver-dark);
+  border-radius: 2px;
+}
+.kvkk-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  font-size: 1.8rem;
+  color: var(--silver-mid);
+  cursor: pointer;
+  line-height: 1;
+}
+.kvkk-close:hover {
+  color: var(--silver-light);
+}
+.kvkk-accept {
+  align-self: flex-start;
+  background: none;
+  border: 1px solid var(--silver-dark);
+  color: var(--silver-light);
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.8rem 2rem;
+  cursor: pointer;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
+}
+.kvkk-accept:hover {
+  background: var(--silver-light);
+  color: var(--bg-primary);
+}
+
 /* ═══════════════════════════════════════
        RESPONSIVE
     ═══════════════════════════════════════ */
