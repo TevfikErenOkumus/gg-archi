@@ -20,7 +20,7 @@
       <div class="container">
         <!-- TODO: Logo görselini ekle -->
         <!-- <a href="#" class="navbar-logo"><img src="img/logo.png" alt="GG ARCHI"></a> -->
-        <a href="#" class="navbar-logo">
+        <a href="#" class="navbar-logo" id="navbarLogo">
           <div class="navbar-lines-left"></div>
           <div class="navbar-logo-wrapper">
             <span class="navbar-logo-line">GG</span>
@@ -49,7 +49,7 @@
       <div class="hero-content">
         <!-- TODO: Logo görselini ekle -->
         <!-- <img src="img/domatess.jpg" alt="GG ARCHI" class="hero-logo"> -->
-        <h1 class="hero-title">GG</h1>
+        <h1 class="hero-title" id="heroTitle">GG</h1>
         <p class="hero-name">ARCHI</p>
         <div class="hero-name-divider"></div>
         <p class="hero-subtitle">Archıtecture | Desıgn | Buılt</p>
@@ -638,10 +638,82 @@ Konsept geliştirme, mimari proje tasarımı, uygulama projeleri, cephe tasarım
     <!-- ════════════ JAVASCRIPT ════════════ -->
     <script>
       // ── Navbar scroll effect ──
-      const navbar = document.getElementById("navbar");
-      window.addEventListener("scroll", () => {
-        navbar.classList.toggle("scrolled", window.scrollY > 50);
-      });
+      // ── Navbar + Hero Logo Scroll Animation ──
+
+const navbar = document.getElementById("navbar");
+const heroContent = document.querySelector(".hero-content");
+const navbarLogo = document.getElementById("navbarLogo");
+
+function animateHeroLogo() {
+  const scrollY = window.scrollY;
+
+  // Animasyonun başlayıp biteceği mesafe
+  const animationStart = 50;
+  const animationEnd = 350;
+
+  // 0 → 1 arasında scroll ilerleme oranı
+  let progress =
+    (scrollY - animationStart) /
+    (animationEnd - animationStart);
+
+  progress = Math.max(0, Math.min(1, progress));
+
+  // Navbar'ın normal scroll efekti
+  navbar.classList.toggle("scrolled", scrollY > 50);
+
+  // Hero logosunun başlangıç konumu
+  const heroRect = heroContent.getBoundingClientRect();
+
+  // Navbar logosunun hedef konumu
+  const navbarRect = navbarLogo.getBoundingClientRect();
+
+  // Hero yazısının merkezi
+  const heroCenterX =
+    heroRect.left + heroRect.width / 2;
+
+  const heroCenterY =
+    heroRect.top + heroRect.height / 2;
+
+  // Navbar logosunun merkezi
+  const navbarCenterX =
+    navbarRect.left + navbarRect.width / 2;
+
+  const navbarCenterY =
+    navbarRect.top + navbarRect.height / 2;
+
+  // Hareket mesafesi
+  const moveX =
+    (navbarCenterX - heroCenterX) * progress;
+
+  const moveY =
+    (navbarCenterY - heroCenterY) * progress;
+
+  // Küçülme
+  const scale =
+    1 - (0.68 * progress);
+
+  // Hero yazısının hareketi
+  heroContent.style.transform =
+    `translate(${moveX}px, ${moveY}px) scale(${scale})`;
+
+
+
+  // Animasyon tamamlandığında navbar logosunu göster
+  if (progress >= 1) {
+    navbar.classList.add("logo-arrived");
+  } else {
+    navbar.classList.remove("logo-arrived");
+  }
+}
+
+// Scroll
+window.addEventListener("scroll", animateHeroLogo);
+
+// Sayfa ilk açıldığında da hesapla
+window.addEventListener("load", animateHeroLogo);
+
+// Ekran boyutu değişirse yeniden hesapla
+window.addEventListener("resize", animateHeroLogo);
 
       // ── Mobile menu toggle ──
       const navToggle = document.getElementById("navToggle");
@@ -754,17 +826,23 @@ let autoTimer = null;
 function showImage(index) {
   if (galleryImages.length === 0) return;
   currentIndex = (index + galleryImages.length) % galleryImages.length;
-  lightboxImg.src = galleryImages[currentIndex];
+
+  const targetSrc = galleryImages[currentIndex];
+  const reqIndex = currentIndex; // yarış durumu koruması
+
+  lightboxImg.classList.add("loading"); // görseli saydamlaştır
+
+  const loader = new Image();
+  loader.onload = () => {
+    // Yükleme bittiğinde kullanıcı başka görsele geçtiyse bunu gösterme
+    if (reqIndex !== currentIndex) return;
+    lightboxImg.src = targetSrc;
+    lightboxImg.classList.remove("loading");
+  };
+  loader.src = targetSrc;
+
   lightboxCounter.textContent =
     (currentIndex + 1) + " / " + galleryImages.length;
-
-}
-
-function startAuto() {
-  stopAuto();
-  if (galleryImages.length > 1) {
-    autoTimer = setInterval(() => showImage(currentIndex + 1), 2000);
-  }
 }
 
 function stopAuto() {
@@ -779,6 +857,8 @@ projectCards.forEach((card) => {
 
     galleryImages = data.split(",").map((s) => s.trim());
     currentIndex = 0;
+
+    galleryImages.forEach((src) => { new Image().src = src; });
 
     lightboxTitle.textContent = card.dataset.title || "";
     lightboxDesc.textContent = card.dataset.desc || "";
