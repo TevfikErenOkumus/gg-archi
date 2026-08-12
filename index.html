@@ -823,19 +823,21 @@ let galleryImages = [];
 let currentIndex = 0;
 let autoTimer = null;
 
+let pendingSrc = null;
+
 function showImage(index) {
   if (galleryImages.length === 0) return;
   currentIndex = (index + galleryImages.length) % galleryImages.length;
 
   const targetSrc = galleryImages[currentIndex];
-  const reqIndex = currentIndex; // yarış durumu koruması
+  pendingSrc = targetSrc;
 
-  lightboxImg.classList.add("loading"); // görseli saydamlaştır
+  lightboxImg.classList.add("loading");
 
   const loader = new Image();
   loader.onload = () => {
-    // Yükleme bittiğinde kullanıcı başka görsele geçtiyse bunu gösterme
-    if (reqIndex !== currentIndex) return;
+    // Sadece en son istenen görsel hâlâ buysa göster
+    if (pendingSrc !== targetSrc) return;
     lightboxImg.src = targetSrc;
     lightboxImg.classList.remove("loading");
   };
